@@ -95,6 +95,26 @@ git clone https://github.com/genapohub/team-orchestrator.git ~/.cursor/skills-cu
 
 Skill 会自动分析意图，匹配需要的角色，按依赖关系编排执行。
 
+## 灵活调用机制
+
+指挥官可灵活调度 13 个角色 Skill，**无需全部安装**——只安装你需要的即可：
+
+- 指挥官在调度每个角色前，会自动检测该 Skill 是否已本地安装（检查 `~/.workbuddy/skills/`、`~/.codex/skills/`、`~/.cursor/skills-cursor/` 等路径）
+- 若目标 Skill 已安装 → 正常调度执行，自动串联上下文
+- 若目标 Skill 未安装 → 指挥官暂停并提示：
+
+```
+检测到 {角色名}（{skill-name}）未安装，调度无法继续。
+
+安装方式：
+git clone https://github.com/genapohub/{skill-name}.git ~/.workbuddy/skills/{skill-name}
+
+是否确认安装后继续？
+```
+
+- 确认安装后继续执行；拒绝则自动跳过该角色，不影响其余调度
+- 被调度的角色可同时独立使用——在对话中直接 `$角色名` 即可，历史记忆互通
+
 ## 许可
 
 [MIT](LICENSE) © zhangmengbo
