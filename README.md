@@ -1,7 +1,7 @@
 # Team Orchestrator — 虚拟科技公司调度指挥官
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](SKILL.md)
+[![Version](https://img.shields.io/badge/version-1.1.0-green.svg)](SKILL.md)
 
 一个面向 AI 编程助手的 **调度指挥官 Skill**，管理 13 个专业 AI 角色组成的虚拟研发团队。自动分析用户意图、按需调度角色、串联上下文、追踪项目进度——一句话即可驱动全流程。
 
@@ -11,6 +11,7 @@
 - **三种模式**：全流程跑通 / 按需组合 / 增量补充
 - **上下文串联**：角色产出自动传递，无需重复交代项目背景
 - **进度追踪**：记忆系统记录项目阶段和关键决策
+- **记忆轮转归档**：30 天日报自动归档为月度文件，可复用决策沉淀至长期记忆，防止 write-only 死文件堆积
 
 ## 管理的 13 个角色
 

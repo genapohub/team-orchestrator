@@ -1,7 +1,7 @@
 ---
 name: team-orchestrator
 description: 虚拟科技公司调度指挥官。当用户提出项目需求时触发，自动分析意图、按需调度13个专业角色（产品/架构/设计/前端/后端/测试/运维/数据/增长/商业化/运营等），智能路由只调用需要的角色，串联上下文产出完整项目方案。
-version: 1.0.0
+version: 1.1.0
 tags:
   - orchestrator
   - team-management
@@ -18,6 +18,8 @@ trigger_keywords:
   - 整个项目
   - 研发团队
   - 虚拟团队
+  - 记忆归档
+  - 清理记忆
 ---
 
 # 调度指挥官 / Team Orchestrator
@@ -76,7 +78,7 @@ trigger_keywords:
 
 ## 执行流程
 
-按以下 5 步顺序执行，不可跳步。在执行前和执行后分别执行记忆加载和记忆记录。
+按以下 8 步顺序执行，不可跳步。在执行前和执行后分别执行记忆加载、记忆记录与记忆轮转归档。
 
 ### Step 0: 加载历史记忆
 
@@ -85,6 +87,7 @@ trigger_keywords:
 - 读取 `.skill-memory/team-orchestrator/MEMORY.md`：包含长期积累的项目状态、团队配置偏好、调度历史、关键决策记录
 - 读取 `.skill-memory/team-orchestrator/{今天日期}.md`：当天的调度日志
 - 如果存在历史项目，检查当前输入是否为延续项目（关键词："继续"、"补"、"上次"）
+- 若今日 `.skill-memory/team-orchestrator/{今天日期}.md` 不存在，且 `.skill-memory/team-orchestrator/archive/` 存在，则按文件名降序读取最近一个月度归档（通常为上个月的 `archive/YYYY-MM.md`），获取近期已归档的上下文摘要作为延续项目的补充背景
 
 如果记忆文件不存在或为全新项目，跳过此步。如果为延续项目，在对话中引用历史状态，直接定位到上次中断的阶段，避免从零重新规划。
 
@@ -158,12 +161,38 @@ git clone https://github.com/genapohub/{skill-name}.git ~/.workbuddy/skills/{ski
 - **更新长期记忆** `MEMORY.md`：如果本次调度产生了新的可复用规范（如项目阶段模板、角色路由偏好、用户反馈修改的流程），追加到该文件
 - **跨角色记忆串联**：确保每个被调度的角色已独立写入其 `.skill-memory/{role}/YYYY-MM-DD.md`
 - 记忆文件不存在则自动创建，目录不存在则自动创建 `.skill-memory/team-orchestrator/`
+- 完成 Step 6 后立即进入 Step 7 执行记忆轮转归档检查（轻量，每次必做）
+
+### Step 7: 记忆轮转归档检查
+
+在 Step 6 完成后执行，防止 `.skill-memory/` 下日报无限堆积。先读取 `references/记忆轮转归档.md` 了解完整规则。
+
+**7.1 轻量检查（每次必做）**
+- 枚举当前项目 cwd 下所有 `.skill-memory/*/` 目录（覆盖 team-orchestrator 自身 + 13 个角色 skill + 任何其他已写入的 skill）
+- 对每个目录统计日报文件数（匹配 `YYYY-MM-DD.md`，排除 `archive/` 与 `MEMORY.md`）
+- 触发条件（满足任一即进入 7.2）：
+  - 条件 A：存在日报日期早于「今天 − 30 天」
+  - 条件 B：某目录日报数 > 35
+- 全部不满足 → 输出一行「记忆轮转：无需归档（已检查 {N} 个 skill 目录）」并结束
+
+**7.2 完整轮转**
+- 对每个命中目录按 `references/记忆轮转归档.md` 第五节算法执行：
+  过期日报按月分组 → 写入 `archive/YYYY-MM.md`（保留每日 1-3 行摘要）→ 提取可复用决策去重追加至该 skill `MEMORY.md` → 删除原日报
+- 首次轮转（项目内无 `archive/`）需暂停向用户确认后再删除；后续自动执行
+
+**7.3 校验**
+- 确认 archive 文件生成、MEMORY.md 已更新、原日报已删、剩余日报 ≤ 30
+- 将归档动作记一行入 `.skill-memory/team-orchestrator/{今天}.md`
 
 ## 资源说明
 
 ### references/调度方法论.md
 
-完整的方法论文档，包含：角色路由规则、3种调度模式、6阶段全流程编排、上下文传递规范、质量检查清单。
+完整的方法论文档，包含：角色路由规则、3种调度模式、6阶段全流程编排、上下文传递规范、质量检查清单、记忆生命周期与归档。
+
+### references/记忆轮转归档.md
+
+记忆生命周期管理文档，包含：轮转阈值（30 天/35 篇）、月度归档文件模板、轮转算法步骤、MEMORY.md 沉淀规则、首次运行安全开关。在 Step 7 执行前必须读取。
 
 ## 注意事项
 
