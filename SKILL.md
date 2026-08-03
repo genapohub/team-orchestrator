@@ -102,15 +102,18 @@ trigger_keywords:
 
 **技能可用性检测（重要）**：确定调度清单后，在执行每个角色前，检查该角色的 Skill 是否已在本地安装：
 
-- 检查路径：`~/.workbuddy/skills/{skill-name}/SKILL.md`（WorkBuddy）、`~/.codex/skills/{skill-name}/SKILL.md`（Codex）、`~/.cursor/skills-cursor/{skill-name}/SKILL.md`（Cursor）
+- 检查路径：`~/.workbuddy/skills/{skill-name}/SKILL.md`（WorkBuddy）、`~/.codex/skills/{skill-name}/SKILL.md`（Codex）、`~/.cursor/skills-cursor/{skill-name}/SKILL.md`（Cursor）。Trae 通过内部导入，AI 无法检测文件路径，默认跳过检测（由用户自行确保已导入）
 - 如果至少一个路径存在 → 正常执行
 - 如果所有路径都不存在 → 暂停，向用户输出：
 
 ```
 ⚠️ 检测到 {角色名}（{skill-name}）未安装，调度无法继续。
 
-安装方式：
-git clone https://github.com/genapohub/{skill-name}.git ~/.workbuddy/skills/{skill-name}
+根据你当前使用的工具，执行对应安装命令：
+- WorkBuddy: git clone https://github.com/genapohub/{skill-name}.git ~/.workbuddy/skills/{skill-name}
+- Codex:     git clone https://github.com/genapohub/{skill-name}.git ~/.codex/skills/{skill-name}
+- Cursor:    git clone https://github.com/genapohub/{skill-name}.git ~/.cursor/skills-cursor/{skill-name}
+- Trae:      在 Trae 设置中导入 {skill-name}.zip
 
 是否确认安装后继续？(Y/N)
 ```
@@ -163,7 +166,7 @@ git clone https://github.com/genapohub/{skill-name}.git ~/.workbuddy/skills/{ski
 
 ### Step 7: 记忆轮转检查
 
-在 Step 6 完成后执行，防止日志无限堆积。**本次调度中所有角色技能产生的日志（`[角色名] ...` 条目）统一由本步归档，角色技能在被调度时跳过各自的轮转检查。** 轮转规则详见 `references/记忆规则.md`（WorkBuddy 用户也可通过 `~/.workbuddy/MEMORY.md` 获取同一份规则）。
+在 Step 6 完成后执行，防止日志无限堆积。**本次调度中所有角色技能产生的日志（`[角色名] ...` 条目）统一由本步归档，角色技能在被调度时跳过全部记忆操作（写入 + 轮转），由调度官 Step 6（写日志）/ Step 7（轮转归档）统一处理。** 轮转规则详见 `references/记忆规则.md`（WorkBuddy 用户也可通过 `~/.workbuddy/MEMORY.md` 获取同一份规则）。
 
 **7.1 轻量检查（每次必做）**
 - 统计 `.skills-memory/` 下 `YYYY-MM-DD.md` 文件数（排除 `archive/` 与 `MEMORY.md`）
