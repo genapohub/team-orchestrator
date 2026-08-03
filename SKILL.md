@@ -163,7 +163,7 @@ git clone https://github.com/genapohub/{skill-name}.git ~/.workbuddy/skills/{ski
 
 ### Step 7: 记忆轮转检查
 
-在 Step 6 完成后执行，防止日志无限堆积。轮转规则详见 `references/记忆规则.md`（WorkBuddy 用户也可通过 `~/.workbuddy/MEMORY.md` 获取同一份规则）。
+在 Step 6 完成后执行，防止日志无限堆积。**本次调度中所有角色技能产生的日志（`[角色名] ...` 条目）统一由本步归档，角色技能在被调度时跳过各自的轮转检查。** 轮转规则详见 `references/记忆规则.md`（WorkBuddy 用户也可通过 `~/.workbuddy/MEMORY.md` 获取同一份规则）。
 
 **7.1 轻量检查（每次必做）**
 - 统计 `.workbuddy/memory/` 下 `YYYY-MM-DD.md` 文件数（排除 `archive/` 与 `MEMORY.md`）
