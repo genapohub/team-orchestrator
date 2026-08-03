@@ -29,7 +29,7 @@ trigger_keywords:
 
 本技能支持两种使用模式：
 
-- **独立使用**：在对话中直接调用 `$team-orchestrator` 或提及触发词，即可按需调度 13 个角色执行项目方案产出。每次调度自动写入 `.workbuddy/memory/` 追踪项目状态。
+- **独立使用**：在对话中直接调用 `$team-orchestrator` 或提及触发词，即可按需调度 13 个角色执行项目方案产出。每次调度自动写入 `.skills-memory/` 追踪项目状态。
 - **调用其他技能**：作为调度指挥官，可按意图分析结果自动路由到本地已安装的角色 Skill，串联上下文执行。若目标 Skill 未安装，主动提示用户安装后再继续。
 
 ---
@@ -82,10 +82,10 @@ trigger_keywords:
 
 在执行任何调度工作前，先读取项目的记忆文件（如果存在）：
 
-- 读取 `.workbuddy/memory/MEMORY.md`：包含长期积累的项目状态、团队配置偏好、调度历史、关键决策记录（按技能分段）
-- 读取 `.workbuddy/memory/{今天日期}.md`：当天的调度日志
+- 读取 `.skills-memory/MEMORY.md`：包含长期积累的项目状态、团队配置偏好、调度历史、关键决策记录（按技能分段）
+- 读取 `.skills-memory/{今天日期}.md`：当天的调度日志
 - 如果存在历史项目，检查当前输入是否为延续项目（关键词："继续"、"补"、"上次"）
-- 若今日日志不存在且 `.workbuddy/memory/archive/` 存在，按文件名降序读取最近一个月度归档作为延续项目的补充背景
+- 若今日日志不存在且 `.skills-memory/archive/` 存在，按文件名降序读取最近一个月度归档作为延续项目的补充背景
 
 如果记忆文件不存在或为全新项目，跳过此步。如果为延续项目，在对话中引用历史状态，直接定位到上次中断的阶段，避免从零重新规划。
 
@@ -153,12 +153,12 @@ git clone https://github.com/genapohub/{skill-name}.git ~/.workbuddy/skills/{ski
 
 ### Step 6: 记录调度记忆
 
-每次调度完成后，将本次执行的关键信息持久化到 `.workbuddy/memory/` 目录：
+每次调度完成后，将本次执行的关键信息持久化到 `.skills-memory/` 目录：
 
 - **追加今日日志** `YYYY-MM-DD.md`：每条格式 `[team-orchestrator] 场景描述 → 关键决策`，记录调度模式（A/B/C）、调度的角色列表及顺序、每阶段产出摘要、用户决策点、当前项目阶段标记
 - **更新长期记忆** `MEMORY.md`：如果本次调度产生了新的可复用规范（如项目阶段模板、角色路由偏好、用户反馈修改的流程），去重后追加到对应技能分段
 - **跨角色记忆串联**：每个被调度的角色产出后，在今日日志中追加 `[skill-name]` 前缀条目，不单独创建角色目录
-- 记忆文件不存在则自动创建，目录不存在则自动创建 `.workbuddy/memory/`
+- 记忆文件不存在则自动创建，目录不存在则自动创建 `.skills-memory/`
 - 完成 Step 6 后立即进入 Step 7 执行记忆轮转检查
 
 ### Step 7: 记忆轮转检查
@@ -166,7 +166,7 @@ git clone https://github.com/genapohub/{skill-name}.git ~/.workbuddy/skills/{ski
 在 Step 6 完成后执行，防止日志无限堆积。**本次调度中所有角色技能产生的日志（`[角色名] ...` 条目）统一由本步归档，角色技能在被调度时跳过各自的轮转检查。** 轮转规则详见 `references/记忆规则.md`（WorkBuddy 用户也可通过 `~/.workbuddy/MEMORY.md` 获取同一份规则）。
 
 **7.1 轻量检查（每次必做）**
-- 统计 `.workbuddy/memory/` 下 `YYYY-MM-DD.md` 文件数（排除 `archive/` 与 `MEMORY.md`）
+- 统计 `.skills-memory/` 下 `YYYY-MM-DD.md` 文件数（排除 `archive/` 与 `MEMORY.md`）
 - 触发条件（满足任一）：
   - 条件 A：存在日报日期早于「今天 - 30 天」
   - 条件 B：日报数 > 35
