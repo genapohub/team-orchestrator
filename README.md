@@ -44,12 +44,14 @@
 
 **方式一：克隆到 skills 目录**
 ```bash
-git clone https://github.com/genapohub/team-orchestrator.git ~/.workbuddy/skills/team-orchestrator
+git clone https://github.com/genapohub/team-orchestrator.git
+zip -r team-orchestrator.zip team-orchestrator/ ~/.workbuddy/skills/team-orchestrator
 ```
 
 **方式二：ZIP导入**
 ```bash
 git clone https://github.com/genapohub/team-orchestrator.git
+zip -r team-orchestrator.zip team-orchestrator/
 zip -r team-orchestrator.zip team-orchestrator/
 ```
 然后在 WorkBuddy 桌面端 → **技能市场** → **添加技能/上传技能** → **点击"跳过检测，直接安装"**。
@@ -59,6 +61,7 @@ zip -r team-orchestrator.zip team-orchestrator/
 **ZIP 导入**
 ```bash
 git clone https://github.com/genapohub/team-orchestrator.git
+zip -r team-orchestrator.zip team-orchestrator/
 ```
 然后在 Trae → **设置** → **Rules & Skills** → **创建** → 上传 `team-orchestrator.zip`。
 
@@ -66,10 +69,12 @@ git clone https://github.com/genapohub/team-orchestrator.git
 
 ```bash
 # 克隆到 skills 目录
-git clone https://github.com/genapohub/team-orchestrator.git ~/.codex/skills/team-orchestrator
+git clone https://github.com/genapohub/team-orchestrator.git
+zip -r team-orchestrator.zip team-orchestrator/ ~/.codex/skills/team-orchestrator
 
 # 或使用 cc switch (推荐)
-git clone https://github.com/genapohub/team-orchestrator.git ~/.cc-switch/skills/team-orchestrator
+git clone https://github.com/genapohub/team-orchestrator.git
+zip -r team-orchestrator.zip team-orchestrator/ ~/.cc-switch/skills/team-orchestrator
 ```
 
 重启 CC Switch客户端/Codex客户端 后自动发现。也可以在对话中输入 `$team-orchestrator` 手动调用。
@@ -77,7 +82,8 @@ git clone https://github.com/genapohub/team-orchestrator.git ~/.cc-switch/skills
 ### Cursor
 ```bash
 # 克隆到 skills 目录
-git clone https://github.com/genapohub/team-orchestrator.git ~/.cursor/skills-cursor/team-orchestrator
+git clone https://github.com/genapohub/team-orchestrator.git
+zip -r team-orchestrator.zip team-orchestrator/ ~/.cursor/skills-cursor/team-orchestrator
 ```
 
 重启 Cursor客户端 后自动发现。也可以在对话中输入 `$team-orchestrator` 手动调用。
