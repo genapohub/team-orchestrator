@@ -52,7 +52,6 @@ zip -r team-orchestrator.zip team-orchestrator/ ~/.workbuddy/skills/team-orchest
 ```bash
 git clone https://github.com/genapohub/team-orchestrator.git
 zip -r team-orchestrator.zip team-orchestrator/
-zip -r team-orchestrator.zip team-orchestrator/
 ```
 然后在 WorkBuddy 桌面端 → **技能市场** → **添加技能/上传技能** → **点击"跳过检测，直接安装"**。
 
