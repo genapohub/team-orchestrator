@@ -109,11 +109,13 @@ trigger_keywords:
 ```
 ⚠️ 检测到 {角色名}（{skill-name}）未安装，调度无法继续。
 
-根据你当前使用的工具，执行对应安装命令：
-- WorkBuddy: git clone https://github.com/genapohub/{skill-name}.git ~/.workbuddy/skills/{skill-name}
-- Codex:     git clone https://github.com/genapohub/{skill-name}.git ~/.codex/skills/{skill-name}
-- Cursor:    git clone https://github.com/genapohub/{skill-name}.git ~/.cursor/skills-cursor/{skill-name}
-- Trae:      在 Trae 设置中导入 {skill-name}.zip
+根据你当前使用的工具，选择对应的安装方式：
+- WorkBuddy:  git clone https://github.com/genapohub/{skill-name}.git ~/.workbuddy/skills/{skill-name}
+- Codex:      git clone https://github.com/genapohub/{skill-name}.git ~/.codex/skills/{skill-name}
+              或使用 CC Switch（推荐）：git clone https://github.com/genapohub/{skill-name}.git ~/.cc-switch/skills/{skill-name}
+              然后在 CC Switch 客户端-技能中心里导入技能，选中 Codex 等工具
+- Cursor:     git clone https://github.com/genapohub/{skill-name}.git ~/.cursor/skills-cursor/{skill-name}
+- Trae:       在 Trae 设置中导入 {skill-name}.zip
 
 是否确认安装后继续？(Y/N)
 ```
