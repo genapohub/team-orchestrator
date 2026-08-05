@@ -102,7 +102,7 @@ trigger_keywords:
 
 **技能可用性检测（重要）**：确定调度清单后，在执行每个角色前，检查该角色的 Skill 是否已在本地安装：
 
-- 检查路径：`~/.workbuddy/skills/{skill-name}/SKILL.md`（WorkBuddy）、`~/.codex/skills/{skill-name}/SKILL.md`（Codex）、`~/.cursor/skills-cursor/{skill-name}/SKILL.md`（Cursor）。Trae 通过内部导入，AI 无法检测文件路径，默认跳过检测（由用户自行确保已导入）
+- 检查路径：`~/.workbuddy/skills/{skill-name}/SKILL.md`（WorkBuddy）、`~/.codex/skills/{skill-name}/SKILL.md`（Codex）、`~/.cc-switch/skills/{skill-name}/SKILL.md`（CC Switch）、`~/.cursor/skills-cursor/{skill-name}/SKILL.md`（Cursor）。Trae 通过内部导入，AI 无法检测文件路径，默认跳过检测（由用户自行确保已导入）
 - 如果至少一个路径存在 → 正常执行
 - 如果所有路径都不存在 → 暂停，向用户输出：
 
