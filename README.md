@@ -56,17 +56,17 @@ zip -r team-orchestrator.zip team-orchestrator/
 ```
 然后在 Trae → **设置** → **Rules & Skills** → **创建** → 上传 `team-orchestrator.zip`。
 
-### Codex
+### Codex / ZCode
 
 ```bash
 # 克隆到 skills 目录
 git clone https://github.com/genapohub/team-orchestrator.git ~/.codex/skills/team-orchestrator
 
-# 或使用 cc switch (推荐)
-git clone https://github.com/genapohub/team-orchestrator.git ~/.cc-switch/skills/team-orchestrator
+# ZCode
+git clone https://github.com/genapohub/team-orchestrator.git ~/.zcode/skills/team-orchestrator
 ```
 
-重启 CC Switch客户端/Codex客户端 后自动发现。也可以在对话中输入 `$team-orchestrator` 手动调用。
+重启 Codex / ZCode 客户端后自动发现。也可以在对话中输入 `$team-orchestrator` 手动调用。
 
 ### Cursor
 ```bash

@@ -103,7 +103,7 @@ trigger_keywords:
 
 **技能可用性检测（重要）**：确定调度清单后，在执行每个角色前，检查该角色的 Skill 是否已在本地安装：
 
-- 检查路径：`~/.workbuddy/skills/{skill-name}/SKILL.md`（WorkBuddy）、`~/.codex/skills/{skill-name}/SKILL.md`（Codex）、`~/.cc-switch/skills/{skill-name}/SKILL.md`（CC Switch）、`~/.cursor/skills-cursor/{skill-name}/SKILL.md`（Cursor）。Trae 通过内部导入，AI 无法检测文件路径，默认跳过检测（由用户自行确保已导入）
+- 检查路径：`~/.workbuddy/skills/{skill-name}/SKILL.md`（WorkBuddy）、`~/.codex/skills/{skill-name}/SKILL.md`（Codex）、`~/.cursor/skills-cursor/{skill-name}/SKILL.md`（Cursor）、`~/.zcode/skills/{skill-name}/SKILL.md`（ZCode）。Trae 通过内部导入，AI 无法检测文件路径，默认跳过检测（由用户自行确保已导入）
 - 如果至少一个路径存在 → 正常执行
 - 如果所有路径都不存在 → 暂停，向用户输出：
 
@@ -113,8 +113,7 @@ trigger_keywords:
 根据你当前使用的工具，选择对应的安装方式：
 - WorkBuddy:  git clone https://github.com/genapohub/{skill-name}.git ~/.workbuddy/skills/{skill-name}
 - Codex:      git clone https://github.com/genapohub/{skill-name}.git ~/.codex/skills/{skill-name}
-              或使用 CC Switch（推荐）：git clone https://github.com/genapohub/{skill-name}.git ~/.cc-switch/skills/{skill-name}
-              然后在 CC Switch 客户端-技能中心里导入技能，选中 Codex 等工具
+- ZCode:      git clone https://github.com/genapohub/{skill-name}.git ~/.zcode/skills/{skill-name}
 - Cursor:     git clone https://github.com/genapohub/{skill-name}.git ~/.cursor/skills-cursor/{skill-name}
 - Trae:       在 Trae 设置中导入 {skill-name}.zip
 
