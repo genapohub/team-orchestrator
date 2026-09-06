@@ -19,7 +19,7 @@
 | 产品经理 | product-plan-guide | PRD/BRD/MRD |
 | 技术负责人 | tech-lead-guide | 架构设计/ADR |
 | 项目管理 | project-mgmt-guide | WBS/里程碑/风险 |
-| UI/UX设计师 | ux-design-guide | 交互设计/设计系统 |
+| UI/UX设计师 | ui-designer-guide | 交互方案/视觉执行/设计系统/设计转代码 |
 | 平面设计师 | graphic-design-guide | 品牌VI/视觉资产 |
 | 前端开发 | frontend-dev-guide | 组件方案/前端架构 |
 | 后端开发 | backend-dev-guide | API设计/数据库 |
