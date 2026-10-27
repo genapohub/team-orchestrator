@@ -103,7 +103,7 @@ trigger_keywords:
 
 **技能可用性检测（重要）**：确定调度清单后，在执行每个角色前，检查该角色的 Skill 是否已在本地安装：
 
-- 检查路径：`~/.workbuddy/skills/{skill-name}/SKILL.md`（WorkBuddy）、`~/.codex/skills/{skill-name}/SKILL.md`（Codex）、`~/.cursor/skills-cursor/{skill-name}/SKILL.md`（Cursor）、`~/.zcode/skills/{skill-name}/SKILL.md`（ZCode）。Trae 通过内部导入，AI 无法检测文件路径，默认跳过检测（由用户自行确保已导入）
+- 检查路径：`~/.kimi-code/skills/{skill-name}/SKILL.md`（Kimi Code）、`~/.claude/skills/{skill-name}/SKILL.md`（Claude Code）、`~/.workbuddy/skills/{skill-name}/SKILL.md`（WorkBuddy）、`~/.codex/skills/{skill-name}/SKILL.md`（Codex）、`~/.cursor/skills/{skill-name}/SKILL.md`（Cursor）、`~/.zcode/skills/{skill-name}/SKILL.md`（ZCode）。Trae 通过内部导入，AI 无法检测文件路径，默认跳过检测（由用户自行确保已导入）
 - 如果至少一个路径存在 → 正常执行
 - 如果所有路径都不存在 → 暂停，向用户输出：
 
@@ -111,10 +111,12 @@ trigger_keywords:
 ⚠️ 检测到 {角色名}（{skill-name}）未安装，调度无法继续。
 
 根据你当前使用的工具，选择对应的安装方式：
+- Kimi Code:   git clone https://github.com/genapohub/{skill-name}.git ~/.kimi-code/skills/{skill-name}
+- Claude Code: git clone https://github.com/genapohub/{skill-name}.git ~/.claude/skills/{skill-name}
 - WorkBuddy:  git clone https://github.com/genapohub/{skill-name}.git ~/.workbuddy/skills/{skill-name}
 - Codex:      git clone https://github.com/genapohub/{skill-name}.git ~/.codex/skills/{skill-name}
 - ZCode:      git clone https://github.com/genapohub/{skill-name}.git ~/.zcode/skills/{skill-name}
-- Cursor:     git clone https://github.com/genapohub/{skill-name}.git ~/.cursor/skills-cursor/{skill-name}
+- Cursor:     git clone https://github.com/genapohub/{skill-name}.git ~/.cursor/skills/{skill-name}
 - Trae:       在 Trae 设置中导入 {skill-name}.zip
 
 是否确认安装后继续？(Y/N)
